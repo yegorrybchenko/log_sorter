@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 ruby '2.7.0'
 
 group :test do
+  gem 'factory_bot', '~> 6.2.0'
   gem 'pry', '~> 0.14.1'
   gem 'rubocop', '~> 1.15.0'
 
