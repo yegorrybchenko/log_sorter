@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'layers/application/log/values/page_view'
+require 'layers/domain/log/values/page_view'
 
-RSpec.describe Application::Log::Values::PageView do
+RSpec.describe Domain::Log::Values::PageView do
   context 'when we create view' do
     let(:path) { 'page/1' }
     let(:ip) { '111.23.23.22' }

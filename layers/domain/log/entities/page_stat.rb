@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Application
+module Domain
   module Log
     module Entities
       class PageStat
