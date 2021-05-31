@@ -3,7 +3,7 @@
 require 'factory_bot'
 
 FactoryBot.define do
-  factory :page_view do
+  factory :page_view, class: Application::Log::Values::PageView do
     path { 'page/cool/2' }
     ip { '21.34.53.12' }
   end

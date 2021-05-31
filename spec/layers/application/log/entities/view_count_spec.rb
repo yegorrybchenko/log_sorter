@@ -5,10 +5,9 @@ require 'layers/application/log/entities/view_count'
 
 RSpec.describe Application::Log::Entities::ViewCount do
   subject { described_class.new(view) }
+  let(:view) { build(:page_view) }
 
   context 'when we create view count' do
-    let(:view) { build(:page_view) }
-
     it 'creates successfully' do
       expect(subject.view).to eq view
       expect(subject.count).to eq 1
