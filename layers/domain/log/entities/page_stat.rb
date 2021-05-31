@@ -6,9 +6,9 @@ module Domain
       class PageStat
         attr_reader :path, :ips
 
-        def initialize(path, ip)
+        def initialize(path, ips)
           @path = path
-          @ips = [ip]
+          @ips = ips
         end
       end
     end
