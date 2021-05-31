@@ -8,6 +8,6 @@ FactoryBot.define do
     initialize_with { new(path, ips) }
 
     path { 'page/cool/2' }
-    ips { ['21.34.53.12'] }
+    ips { Set.new(['21.34.53.12']) }
   end
 end
