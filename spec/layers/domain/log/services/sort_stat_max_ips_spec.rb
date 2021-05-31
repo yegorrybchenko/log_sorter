@@ -11,7 +11,7 @@ RSpec.describe Domain::Log::Services::SortStatMaxIps do
     let(:stat) { Domain::Log::Entities::Stat.new({}) }
 
     it 'returns empty array' do
-      is_expected.to eq []
+      expect(subject.get).to eq []
     end
   end
 
@@ -33,9 +33,9 @@ RSpec.describe Domain::Log::Services::SortStatMaxIps do
     let(:stat) { Domain::Log::Entities::Stat.new(stat_hash) }
 
     it 'returns ordered page stats' do
-      expect(subject[0]).to eq page_stat2
-      expect(subject[1..2]).to include(page_stat3, page_stat4)
-      expect(subject[3..4]).to include(page_stat1, page_stat5)
+      expect(subject.get[0]).to eq page_stat2
+      expect(subject.get[1..2]).to include(page_stat3, page_stat4)
+      expect(subject.get[3..4]).to include(page_stat1, page_stat5)
     end
   end
 end

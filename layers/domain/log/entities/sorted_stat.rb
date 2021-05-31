@@ -4,7 +4,12 @@ module Domain
   module Log
     module Entities
       class SortedStat
-        def initialize
+        def initialize(stat)
+          @stat = stat
+        end
+
+        def get
+          @stat
         end
       end
     end
