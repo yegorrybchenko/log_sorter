@@ -16,8 +16,9 @@ RSpec.describe Application::Log::Serializers::PageViews::String do
   end
 
   context 'when string is not correct' do
+    let(:exception) { Application::Log::Serializers::PageViews::WrongStringException }
     context 'when string has ending line symbol' do
-      let(:string) { '/about 126.318.035.038\n' }
+      let(:string) { "/about 126.318.035.038\n" }
 
       it 'creates page view' do
         page_vew = Domain::Log::Values::PageView.new('/about', '126.318.035.038')
@@ -29,8 +30,8 @@ RSpec.describe Application::Log::Serializers::PageViews::String do
       let(:string) { '/about' }
 
       it 'raises exception' do
-        error = Application::Log::Serializers::PageViews::WrongStringException.new(string)
-        expect { subject }.to raise_error(error)
+        error = exception.new(string)
+        expect { subject }.to raise_error(exception).with_message(error.message)
       end
     end
 
@@ -38,8 +39,8 @@ RSpec.describe Application::Log::Serializers::PageViews::String do
       let(:string) { ' 126.318.035.038' }
 
       it 'raises exception' do
-        error = Application::Log::Serializers::PageViews::WrongStringException.new(string)
-        expect { subject }.to raise_error(error)
+        error = exception.new(string)
+        expect { subject }.to raise_error(exception).with_message(error.message)
       end
     end
   end
