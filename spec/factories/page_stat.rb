@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'factory_bot'
+require 'layers/domain/log/values/page_stat'
 
 FactoryBot.define do
   factory :page_stat, class: Domain::Log::Values::PageStat do
