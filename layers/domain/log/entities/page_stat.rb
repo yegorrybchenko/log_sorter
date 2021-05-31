@@ -8,7 +8,12 @@ module Domain
 
         def initialize(path, ips)
           @path = path
-          @ips = ips
+          @ips = Set.new(ips)
+        end
+
+        def ==(other)
+          path == other.path &&
+            ips == other.ips
         end
       end
     end

@@ -11,7 +11,7 @@ RSpec.describe Domain::Log::Entities::PageStat do
   context 'when we create view count' do
     it 'creates successfully' do
       expect(subject.path).to eq path
-      expect(subject.ips).to eq([ip])
+      expect(subject.ips).to eq(Set.new([ip]))
     end
   end
 
