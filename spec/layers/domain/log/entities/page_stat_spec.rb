@@ -30,6 +30,16 @@ RSpec.describe Domain::Log::Entities::PageStat do
         it 'equals' do
           expect(page_stat1).to eq page_stat2
         end
+
+        context 'and ips are not sorted' do
+          let(:ip2) { '55.25.24.83' }
+          let(:ips1) { [ip, ip2] }
+          let(:ips2) { [ip2, ip] }
+
+          it 'equals' do
+            expect(page_stat1).to eq page_stat2
+          end
+        end
       end
 
       context 'and ips are not equal' do
