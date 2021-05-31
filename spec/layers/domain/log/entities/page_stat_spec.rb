@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'layers/domain/log/entities/page_stat'
 
 RSpec.describe Domain::Log::Entities::PageStat do
-  subject { described_class.new(path, ip) }
+  subject { described_class.new(path, [ip]) }
   let(:path) { 'page/1' }
   let(:ip) { '111.23.23.22' }
 
