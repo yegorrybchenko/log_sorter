@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'layers/domain/log/entities/page_stat'
+require 'layers/domain/log/values/page_stat'
 
-RSpec.describe Domain::Log::Entities::PageStat do
+RSpec.describe Domain::Log::Values::PageStat do
   subject { described_class.new(path, [ip]) }
   let(:path) { 'page/1' }
   let(:ip) { '111.23.23.22' }

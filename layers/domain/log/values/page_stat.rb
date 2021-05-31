@@ -2,7 +2,7 @@
 
 module Domain
   module Log
-    module Entities
+    module Values
       class PageStat
         attr_reader :path, :ips
 

@@ -15,7 +15,7 @@ RSpec.describe Domain::Log::Services::MergePageStat do
       let(:page_stat2) { build(:page_stat, ips: [ip2, ip3]) }
 
       it 'merges ips' do
-        expected = Domain::Log::Entities::PageStat.new(page_stat1.path, page_stat1.ips + [ip2, ip3])
+        expected = Domain::Log::Values::PageStat.new(page_stat1.path, page_stat1.ips + [ip2, ip3])
         is_expected.to eq expected
       end
     end
@@ -25,7 +25,7 @@ RSpec.describe Domain::Log::Services::MergePageStat do
       let(:page_stat2) { build(:page_stat, ips: page_stat1.ips << ip2) }
 
       it 'merges ips' do
-        expected = Domain::Log::Entities::PageStat.new(page_stat1.path, page_stat1.ips + [ip2])
+        expected = Domain::Log::Values::PageStat.new(page_stat1.path, page_stat1.ips + [ip2])
         is_expected.to eq expected
       end
     end

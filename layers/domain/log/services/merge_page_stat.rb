@@ -11,7 +11,7 @@ module Domain
 
         def call
           new_ips = first_page_stat.ips + second_page_stat.ips
-          Entities::PageStat.new(first_page_stat.path, new_ips)
+          Values::PageStat.new(first_page_stat.path, new_ips)
         end
 
         private
