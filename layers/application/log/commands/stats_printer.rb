@@ -7,8 +7,14 @@ module Application
         class << self
           def call(stats, out = $stdout)
             stats.each do |stat|
-              out.puts "#{stat.path} #{stat.ips.size} unique view(s)"
+              out.puts format(stat)
             end
+          end
+
+          private
+
+          def format(stat)
+            "#{stat.path} #{stat.ips.size} unique view(s)"
           end
         end
       end

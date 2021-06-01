@@ -21,8 +21,7 @@ module Domain
         attr_reader :stat, :page_stat
 
         def add_stat
-          hash = stat.get
-          path_stat = hash[page_stat.path]
+          path_stat = stat[page_stat.path]
           return add_new(page_stat) unless path_stat
 
           merged_page_stat = Services::MergePageStat.new(path_stat, page_stat).call
@@ -30,8 +29,7 @@ module Domain
         end
 
         def add_new(new_page_stat)
-          hash = stat.get
-          hash[new_page_stat.path] = new_page_stat
+          stat[new_page_stat.path] = new_page_stat
         end
       end
     end

@@ -44,6 +44,6 @@ RSpec.describe Application::Log::Sequences::ReadStatFile do
       page_stat1.path => page_stat1,
       page_stat2.path => page_stat2
     }
-    expect(subject.get).to eq expected
+    is_expected.to eq expected
   end
 end

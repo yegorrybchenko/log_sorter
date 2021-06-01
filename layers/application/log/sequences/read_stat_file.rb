@@ -2,7 +2,6 @@
 
 require 'layers/application/log/services/file_reader'
 require 'layers/application/log/serializers/page_views/string'
-require 'layers/domain/log/entities/stat'
 require 'layers/domain/log/services/create_page_stat'
 require 'layers/domain/log/commands/add_page_stat'
 
@@ -14,7 +13,7 @@ module Application
           @file_path = file_path
           @reader = reader
           @serializer = serializer
-          @stat = Domain::Log::Entities::Stat.new({})
+          @stat = {}
         end
 
         def call
