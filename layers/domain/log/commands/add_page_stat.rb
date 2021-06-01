@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'layers/domain/log/services/merge_page_stat'
+
 module Domain
   module Log
     module Commands

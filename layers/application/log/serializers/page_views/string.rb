@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'layers/domain/log/values/page_view'
+
 module Application
   module Log
     module Serializers
