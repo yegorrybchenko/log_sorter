@@ -57,3 +57,4 @@ Then we sort each pair (key, value) by count of ips and print result.
 1. Add tests for bin/parser.rb
 2. Add validations for file (missing file, wrong file, etc.)
 3. Don't store ips in memory if not specified.
+4. Add `--help` parameter

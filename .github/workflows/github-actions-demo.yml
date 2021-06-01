@@ -14,11 +14,11 @@ jobs:
         run: bundle install
 
       - name: Run Rubocop
-        run: rubocop
+        run: bundle exec rubocop
 
       - name: Run Reek
-        run: reek
+        run: bundle exec reek
 
       - name: Run tests
-        run: rspec
+        run: bundle exec rspec
     
