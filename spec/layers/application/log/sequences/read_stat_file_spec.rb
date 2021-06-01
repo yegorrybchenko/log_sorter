@@ -4,46 +4,49 @@ require 'spec_helper'
 require 'layers/application/log/sequences/read_stat_file'
 
 RSpec.describe Application::Log::Sequences::ReadStatFile do
-  subject { described_class.new(file_path, reader, serializer_class).call }
-  let(:reader) { double(:reader) }
   let(:serializer_class) { double(:serializer_class) }
-  let(:serializer1) { double(:serializer1) }
-  let(:serializer2) { double(:serializer2) }
-  let(:string) { 'sring' }
-  let(:string2) { 'sring2' }
+  let(:file_path) { 'path_to_file' }
+  let(:string) { 'string' }
+  let(:string2) { 'string2' }
   let(:page_view1) { Domain::Log::Values::PageView.new('path', 'ip') }
   let(:page_view2) { Domain::Log::Values::PageView.new('path2', 'ip2') }
-  let(:page_stat1) { Domain::Log::Values::PageStat.new('path', ['ip']) }
-  let(:page_stat2) { Domain::Log::Values::PageStat.new('path2', ['ip2']) }
-  let(:file_path) { 'path_to_file' }
-
-  before(:each) do
-    allow(reader).to receive(:call).with(file_path).and_yield(string).and_yield(string2)
-
-    allow(serializer_class).to receive(:new).with(string).and_return(serializer1)
-    allow(serializer_class).to receive(:new).with(string2).and_return(serializer2)
-    allow(serializer1).to receive(:call).and_return(page_view1)
-    allow(serializer2).to receive(:call).and_return(page_view2)
-  end
 
   it 'calls reader with file_path' do
+    reader = define_reader(string, string2)
+    define_serializer(serializer_class, string, page_view1)
+    define_serializer(serializer_class, string2, page_view2)
+
     expect(reader).to receive(:call).with(file_path)
 
-    subject
-  end
-
-  it 'calls serializer with returned strings' do
-    expect(serializer_class).to receive(:new).with(string)
-    expect(serializer_class).to receive(:new).with(string2)
-
-    subject
+    described_class.new(file_path, reader, serializer_class).call
   end
 
   it 'returns formed stats' do
+    reader = define_reader(string, string2)
+    define_serializer(serializer_class, string, page_view1)
+    define_serializer(serializer_class, string2, page_view2)
+
+    page_stat1 = Domain::Log::Values::PageStat.new('path', ['ip'])
+    page_stat2 = Domain::Log::Values::PageStat.new('path2', ['ip2'])
+
     expected = {
       page_stat1.path => page_stat1,
       page_stat2.path => page_stat2
     }
-    is_expected.to eq expected
+
+    result = described_class.new(file_path, reader, serializer_class).call
+    expect(result).to eq expected
+  end
+
+  def define_reader(first_yield, second_yield)
+    reader = double(:reader)
+    allow(reader).to receive(:call).with(file_path).and_yield(first_yield).and_yield(second_yield)
+    reader
+  end
+
+  def define_serializer(serializer_class, argument, return_value)
+    serializer = double
+    allow(serializer_class).to receive(:new).with(argument).and_return(serializer)
+    allow(serializer).to receive(:call).and_return(return_value)
   end
 end
