@@ -7,6 +7,7 @@ module Application
         class << self
           def call(file, &block)
             file.each(&block)
+            file.close
           end
         end
       end
