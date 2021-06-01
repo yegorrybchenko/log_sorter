@@ -6,8 +6,6 @@ require 'layers/domain/log/entities/stat'
 require 'layers/domain/log/services/create_page_stat'
 require 'layers/domain/log/commands/add_page_stat'
 
-require 'pry'
-
 module Application
   module Log
     module Sequences
