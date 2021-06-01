@@ -2,6 +2,7 @@
 
 require 'factory_bot'
 require 'layers/domain/log/values/page_stat'
+require 'layers/domain/log/values/page_view'
 
 FactoryBot.define do
   factory :page_stat, class: Domain::Log::Values::PageStat do
@@ -9,5 +10,14 @@ FactoryBot.define do
 
     path { 'page/cool/2' }
     ips { Set.new(['21.34.53.12']) }
+  end
+end
+
+FactoryBot.define do
+  factory :page_view, class: Domain::Log::Values::PageView do
+    initialize_with { new(path, ip) }
+
+    path { 'page/cool/2' }
+    ip { '21.34.53.12' }
   end
 end
