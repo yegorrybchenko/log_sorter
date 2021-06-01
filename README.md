@@ -58,3 +58,4 @@ Then we sort each pair (key, value) by count of ips and print result.
 2. Add validations for file (missing file, wrong file, etc.)
 3. Don't store ips in memory if not specified.
 4. Add `--help` parameter
+5. Process custom exstensions in the top of app. Create Parent custom exception and use existing.
