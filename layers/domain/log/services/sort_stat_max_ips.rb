@@ -12,8 +12,8 @@ module Domain
 
         def call
           hash = stat.get
-          result = hash.values.sort do |a, b|
-            b.ips.size <=> a.ips.size
+          result = hash.values.sort do |first, second|
+            second.ips.size <=> first.ips.size
           end
           Entities::SortedStat.new(result)
         end
