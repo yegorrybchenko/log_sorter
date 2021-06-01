@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'layers/domain/log/services/create_page_stat'
 
 RSpec.describe Domain::Log::Services::CreatePageStat do
-  subject { described_class.new(page_view).call }
+  subject { described_class.call(page_view) }
   let(:page_view) { build(:page_view) }
 
   it 'creates page view' do
