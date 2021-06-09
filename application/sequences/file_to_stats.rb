@@ -1,23 +1,20 @@
 # frozen_string_literal: true
 
-require 'application/services/file_reader'
+require 'application/services/page_view_file_reader'
 require 'application/deserializers/page_views/string'
 require 'domain/services/create_page_stat'
 require 'domain/commands/add_page_stat'
 
 module Application
   module Sequences
-    class ReadStatFile
-      def initialize(file_path, reader = Services::FileReader, serializer = Deserializers::PageViews::String)
-        @file_path = file_path
-        @reader = reader
-        @serializer = serializer
+    class FileToStats
+      def initialize(file)
+        @file = file
         @stat = {}
       end
 
       def call
-        reader.call(file_path) do |line|
-          page_view = serializer.new(line).call
+        Services::PageViewFileReader.call(file) do |page_view|
           page_stat = Domain::Services::CreatePageStat.call(page_view)
           Domain::Commands::AddPageStat.new(stat, page_stat).call
         end
@@ -27,7 +24,7 @@ module Application
 
       private
 
-      attr_reader :file_path, :reader, :serializer, :stat
+      attr_reader :file, :stat
     end
   end
 end

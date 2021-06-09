@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'application/services/file_reader'
+require 'application/services/page_view_file_reader'
 require 'application/deserializers/page_views/string'
 require 'domain/values/page_view'
 
