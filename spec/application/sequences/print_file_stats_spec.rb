@@ -24,6 +24,6 @@ RSpec.describe Application::Sequences::PrintFileStats do
   it 'returns sorted stats' do
     expect(Application::Commands::PrintStats).to receive(:call).with(sorted_stats)
 
-    expect(described_class.call(file)).to eq sorted_stats
+    described_class.call(file)
   end
 end
