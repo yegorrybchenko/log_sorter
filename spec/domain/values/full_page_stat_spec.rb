@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'domain/values/page_stat'
+require 'domain/values/full_page_stat'
 
 RSpec.describe Domain::Values::FullPageStat do
   subject { described_class.new(path, [ip]) }

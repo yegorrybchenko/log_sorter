@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'domain/commands/strategies/full_page_stat'
+
 module Domain
   module Commands
     class AddPageStat

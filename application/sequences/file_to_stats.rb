@@ -3,6 +3,7 @@
 require 'application/services/page_view_file_reader'
 require 'application/deserializers/page_views/string'
 require 'domain/commands/add_page_stat'
+require 'domain/values/full_page_stat'
 
 module Application
   module Sequences
@@ -26,7 +27,7 @@ module Application
       attr_reader :file, :stat
 
       def to_page_stat(page_view)
-        Domain::Values::PageStat.new(page_view.path, [page_view.ip])
+        Domain::Values::FullPageStat.new(page_view.path, [page_view.ip])
       end
     end
   end
