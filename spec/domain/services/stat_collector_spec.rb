@@ -10,7 +10,8 @@ RSpec.describe Domain::Services::StatCollector do
     let(:stat) { [] }
 
     it 'returns empty array' do
-      is_expected.to eq []
+      expect(subject.total_views).to be_empty
+      expect(subject.unique_views).to be_empty
     end
   end
 
@@ -26,19 +27,14 @@ RSpec.describe Domain::Services::StatCollector do
       page_stat4.ips['43.24.21.54'] = 3
     end
 
-    it 'returns ordered total views' do
+    it 'returns total views' do
       result = subject.total_views
-      expect(result[0]).to eq ['page/4', 4]
-      expect(result[1]).to eq ['page/2', 3]
-      expect(result[2..3]).to eq ['page/3', 2]
-      expect(result[3..4]).to include(['page/1', 1], ['page/5', 1])
+      expect(result).to include(['page/4', 4], ['page/2', 3], ['page/3', 2], ['page/cool/2', 1], ['page/5', 1])
     end
 
-    it 'returns orderes unique views' do
+    it 'returns unique views' do
       result = subject.unique_views
-      expect(result[0]).to eq ['page/2', 3]
-      expect(result[1..2]).to include(['page/3', 2], ['page/4', 2])
-      expect(result[3..4]).to include(['page/1', 1], ['page/5', 1])
+      expect(result).to include(['page/2', 3], ['page/3', 2], ['page/4', 2], ['page/cool/2', 1], ['page/5', 1])
     end
   end
 end
