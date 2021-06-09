@@ -2,19 +2,22 @@
 
 require 'spec_helper'
 require 'application/services/file_reader'
+require 'domain/values/page_view'
 
-RSpec.describe Application::Services::FileReader do
-  subject { Application::Services::FileReader.call(file) { |l| l } }
+RSpec.describe Application::Services::PageViewFileReader do
+  subject { described_class.call(file) { |l| l } }
   context 'when file exist' do
     context 'when file contains strings' do
       let(:text) { "first\nsecond\nlast\n" }
       let(:file) { StringIO.new(text) }
 
-      it 'passes to block each string' do
+      it 'passes to block page view string' do
         result = []
-        Application::Services::FileReader.call(file) { |line| result << line }
+        described_class.call(file) { |page_view| result << page_view }
 
-        expect(result).to eq text.split(/(?<=\n)/)
+        result.each do |e|
+          exepct(e).to be_an_instance_of(Domain::Values::PageView)
+        end
       end
 
       it 'closes file' do
