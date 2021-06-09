@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'set'
-
 module Domain
   module Values
     class PageStat
@@ -9,12 +7,8 @@ module Domain
 
       def initialize(path, ips)
         @path = path
-        @ips = Set.new(ips)
-      end
-
-      def ==(other)
-        path == other.path &&
-          ips == other.ips
+        @ips = {}
+        ips.each { |ip| @ips[ip] = 1 }
       end
     end
   end
