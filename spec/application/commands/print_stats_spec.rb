@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'application/commands/stats_printer'
+require 'application/commands/print_stats'
 
-RSpec.describe Application::Commands::StatsPrinter do
+RSpec.describe Application::Commands::PrintStats do
   subject { described_class.call(stats, out) }
   let(:out) { double(:out) }
   let(:stats) { [page_stat1, page_stat2] }

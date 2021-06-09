@@ -2,7 +2,7 @@
 
 module Application
   module Commands
-    class StatsPrinter
+    class PrintStats
       class << self
         def call(stats, out = $stdout)
           stats.each do |stat|

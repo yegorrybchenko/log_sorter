@@ -9,4 +9,4 @@ require 'layers/application/log/commands/stats_printer'
 file = File.new(ARGV[0])
 stat = Application::Log::Sequences::ReadStatFile.new(file).call
 sorted_stat = Domain::Log::Services::SortStatMaxIps.new(stat.values).call
-Application::Log::Commands::StatsPrinter.call(sorted_stat)
+Application::Log::Commands::PrintStats.call(sorted_stat)
