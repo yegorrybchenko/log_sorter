@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'domain/values/page_stat'
 
-RSpec.describe Domain::Values::PageStat do
+RSpec.describe Domain::Values::FullPageStat do
   subject { described_class.new(path, [ip]) }
   let(:path) { 'page/1' }
   let(:ip) { '111.23.23.22' }

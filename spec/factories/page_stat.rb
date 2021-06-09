@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 require 'factory_bot'
-require 'domain/values/page_stat'
+require 'domain/values/full_page_stat'
 require 'domain/values/page_view'
 
 FactoryBot.define do
-  factory :page_stat, class: Domain::Values::PageStat do
+  factory :page_stat, class: Domain::Values::FullPageStat do
     initialize_with { new(path, ips) }
 
     path { 'page/cool/2' }
-    ips { Set.new(['21.34.53.12']) }
+    ips { { '21.34.53.12' => 1 } }
   end
 end
 
