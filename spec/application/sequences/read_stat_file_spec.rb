@@ -3,13 +3,13 @@
 require 'spec_helper'
 require 'application/sequences/read_stat_file'
 
-RSpec.describe Application::Log::Sequences::ReadStatFile do
+RSpec.describe Application::Sequences::ReadStatFile do
   let(:serializer_class) { double(:serializer_class) }
   let(:file_path) { 'path_to_file' }
   let(:string) { 'string' }
   let(:string2) { 'string2' }
-  let(:page_view1) { Domain::Log::Values::PageView.new('path', 'ip') }
-  let(:page_view2) { Domain::Log::Values::PageView.new('path2', 'ip2') }
+  let(:page_view1) { Domain::Values::PageView.new('path', 'ip') }
+  let(:page_view2) { Domain::Values::PageView.new('path2', 'ip2') }
 
   it 'calls reader with file_path' do
     reader = define_reader(string, string2)
@@ -26,8 +26,8 @@ RSpec.describe Application::Log::Sequences::ReadStatFile do
     define_serializer(serializer_class, string, page_view1)
     define_serializer(serializer_class, string2, page_view2)
 
-    page_stat1 = Domain::Log::Values::PageStat.new('path', ['ip'])
-    page_stat2 = Domain::Log::Values::PageStat.new('path2', ['ip2'])
+    page_stat1 = Domain::Values::PageStat.new('path', ['ip'])
+    page_stat2 = Domain::Values::PageStat.new('path2', ['ip2'])
 
     expected = {
       page_stat1.path => page_stat1,

@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'domain/services/sort_stat_max_ips'
 
-RSpec.describe Domain::Log::Services::SortStatMaxIps do
+RSpec.describe Domain::Services::SortStatMaxIps do
   subject { described_class.new(stat).call }
 
   context 'when stat is empty' do

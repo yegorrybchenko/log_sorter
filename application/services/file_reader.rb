@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
 module Application
-  module Log
-    module Services
-      class FileReader
-        class << self
-          def call(file, &block)
-            file.each(&block)
-            file.close
-          end
+  module Services
+    class FileReader
+      class << self
+        def call(file, &block)
+          file.each(&block)
+          file.close
         end
       end
     end

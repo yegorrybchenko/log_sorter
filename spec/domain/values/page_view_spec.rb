@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'domain/values/page_view'
 
-RSpec.describe Domain::Log::Values::PageView do
+RSpec.describe Domain::Values::PageView do
   context 'when we create view' do
     let(:path) { 'page/1' }
     let(:ip) { '111.23.23.22' }

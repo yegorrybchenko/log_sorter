@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'domain/services/merge_page_stat'
 
-RSpec.describe Domain::Log::Services::MergePageStat do
+RSpec.describe Domain::Services::MergePageStat do
   subject { described_class.new(page_stat1, page_stat2).call }
 
   context 'when page stats have the same path' do
@@ -15,7 +15,7 @@ RSpec.describe Domain::Log::Services::MergePageStat do
       let(:page_stat2) { build(:page_stat, ips: [ip2, ip3]) }
 
       it 'merges ips' do
-        expected = Domain::Log::Values::PageStat.new(page_stat1.path, page_stat1.ips + [ip2, ip3])
+        expected = Domain::Values::PageStat.new(page_stat1.path, page_stat1.ips + [ip2, ip3])
         is_expected.to eq expected
       end
     end
@@ -25,7 +25,7 @@ RSpec.describe Domain::Log::Services::MergePageStat do
       let(:page_stat2) { build(:page_stat, ips: page_stat1.ips << ip2) }
 
       it 'merges ips' do
-        expected = Domain::Log::Values::PageStat.new(page_stat1.path, page_stat1.ips + [ip2])
+        expected = Domain::Values::PageStat.new(page_stat1.path, page_stat1.ips + [ip2])
         is_expected.to eq expected
       end
     end

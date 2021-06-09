@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'domain/commands/add_page_stat'
 
-RSpec.describe Domain::Log::Commands::AddPageStat do
+RSpec.describe Domain::Commands::AddPageStat do
   subject { described_class.new(stat, page_stat).call }
   let(:page_stat) { build(:page_stat) }
 
@@ -38,7 +38,7 @@ RSpec.describe Domain::Log::Commands::AddPageStat do
       let(:page_stat2) { build(:page_stat, ips: [new_ip]) }
 
       it 'creates new page stat' do
-        expected_page_stat = Domain::Log::Values::PageStat.new(page_stat2.path, page_stat.ips + page_stat2.ips)
+        expected_page_stat = Domain::Values::PageStat.new(page_stat2.path, page_stat.ips + page_stat2.ips)
         expected = {
           page_stat2.path => expected_page_stat
         }

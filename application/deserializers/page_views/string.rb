@@ -3,29 +3,27 @@
 require 'domain/values/page_view'
 
 module Application
-  module Log
-    module Deserializers
-      module PageViews
-        class String
-          REGEX = /(\S+)\s+(\S+)\s*/.freeze
+  module Deserializers
+    module PageViews
+      class String
+        REGEX = /(\S+)\s+(\S+)\s*/.freeze
 
-          def initialize(string)
-            @string = string
-          end
-
-          def call
-            result = string.match(REGEX)
-            raise WrongStringException, string unless result
-
-            path = result[1]
-            ip = result[2]
-            Domain::Log::Values::PageView.new(path, ip)
-          end
-
-          private
-
-          attr_reader :string
+        def initialize(string)
+          @string = string
         end
+
+        def call
+          result = string.match(REGEX)
+          raise WrongStringException, string unless result
+
+          path = result[1]
+          ip = result[2]
+          Domain::Values::PageView.new(path, ip)
+        end
+
+        private
+
+        attr_reader :string
       end
     end
   end

@@ -5,7 +5,7 @@ require 'domain/values/page_stat'
 require 'domain/values/page_view'
 
 FactoryBot.define do
-  factory :page_stat, class: Domain::Log::Values::PageStat do
+  factory :page_stat, class: Domain::Values::PageStat do
     initialize_with { new(path, ips) }
 
     path { 'page/cool/2' }
@@ -14,7 +14,7 @@ FactoryBot.define do
 end
 
 FactoryBot.define do
-  factory :page_view, class: Domain::Log::Values::PageView do
+  factory :page_view, class: Domain::Values::PageView do
     initialize_with { new(path, ip) }
 
     path { 'page/cool/2' }

@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'application/deserializers/page_views/wrong_string_exception'
 
-RSpec.describe Application::Log::Deserializers::PageViews::WrongStringException do
+RSpec.describe Application::Deserializers::PageViews::WrongStringException do
   subject { described_class.new(string) }
   let(:string) { '/mystr' }
 

@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'domain/services/create_page_stat'
 
-RSpec.describe Domain::Log::Services::CreatePageStat do
+RSpec.describe Domain::Services::CreatePageStat do
   subject { described_class.call(page_view) }
   let(:page_view) { build(:page_view) }
 

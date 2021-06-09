@@ -3,8 +3,8 @@
 require 'spec_helper'
 require 'application/services/file_reader'
 
-RSpec.describe Application::Log::Services::FileReader do
-  subject { Application::Log::Services::FileReader.call(file) { |l| l } }
+RSpec.describe Application::Services::FileReader do
+  subject { Application::Services::FileReader.call(file) { |l| l } }
   context 'when file exist' do
     context 'when file contains strings' do
       let(:text) { "first\nsecond\nlast\n" }
@@ -12,7 +12,7 @@ RSpec.describe Application::Log::Services::FileReader do
 
       it 'passes to block each string' do
         result = []
-        Application::Log::Services::FileReader.call(file) { |line| result << line }
+        Application::Services::FileReader.call(file) { |line| result << line }
 
         expect(result).to eq text.split(/(?<=\n)/)
       end
