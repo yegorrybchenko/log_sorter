@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'application/serializers/page_views/wrong_string_exception'
+require 'application/deserializers/page_views/wrong_string_exception'
 
-RSpec.describe Application::Log::Serializers::PageViews::WrongStringException do
+RSpec.describe Application::Log::Deserializers::PageViews::WrongStringException do
   subject { described_class.new(string) }
   let(:string) { '/mystr' }
 

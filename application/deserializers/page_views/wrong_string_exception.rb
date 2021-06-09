@@ -2,7 +2,7 @@
 
 module Application
   module Log
-    module Serializers
+    module Deserializers
       module PageViews
         class WrongStringException < StandardError
           def initialize(string)

@@ -4,7 +4,7 @@ require 'domain/values/page_view'
 
 module Application
   module Log
-    module Serializers
+    module Deserializers
       module PageViews
         class String
           REGEX = /(\S+)\s+(\S+)\s*/.freeze

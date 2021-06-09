@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'application/services/file_reader'
-require 'application/serializers/page_views/string'
+require 'application/deserializers/page_views/string'
 require 'domain/services/create_page_stat'
 require 'domain/commands/add_page_stat'
 
@@ -9,7 +9,7 @@ module Application
   module Log
     module Sequences
       class ReadStatFile
-        def initialize(file_path, reader = Services::FileReader, serializer = Serializers::PageViews::String)
+        def initialize(file_path, reader = Services::FileReader, serializer = Deserializers::PageViews::String)
           @file_path = file_path
           @reader = reader
           @serializer = serializer

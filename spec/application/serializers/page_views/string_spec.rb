@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'application/serializers/page_views/string'
+require 'application/deserializers/page_views/string'
 
-RSpec.describe Application::Log::Serializers::PageViews::String do
+RSpec.describe Application::Log::Deserializers::PageViews::String do
   subject { described_class.new(string).call }
 
   context 'when string is correct' do
@@ -16,7 +16,7 @@ RSpec.describe Application::Log::Serializers::PageViews::String do
   end
 
   context 'when string is not correct' do
-    let(:exception) { Application::Log::Serializers::PageViews::WrongStringException }
+    let(:exception) { Application::Log::Deserializers::PageViews::WrongStringException }
     context 'when string has ending line symbol' do
       let(:string) { "/about 126.318.035.038\n" }
 
