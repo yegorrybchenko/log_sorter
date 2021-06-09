@@ -15,7 +15,7 @@ RSpec.describe Domain::Services::StatCountSorter do
 
     it 'returns ordered total views' do
       result = subject.total_views
-      expect(result[0..1]).to include(['page/1', 1], ['page/5', 1])
+      expect(result[0..1]).to include(['page/cool/2', 1], ['page/5', 1])
       expect(result[2]).to eq ['page/3', 2]
       expect(result[3]).to eq ['page/2', 3]
       expect(result[4]).to eq ['page/4', 4]
@@ -23,7 +23,7 @@ RSpec.describe Domain::Services::StatCountSorter do
 
     it 'returns orderes unique views' do
       result = subject.unique_views
-      expect(result[0..1]).to include(['page/1', 1], ['page/5', 1])
+      expect(result[0..1]).to include(['page/cool/2', 1], ['page/5', 1])
       expect(result[2..3]).to include(['page/3', 2], ['page/4', 2])
       expect(result[4]).to eq ['page/2', 3]
     end
@@ -37,14 +37,14 @@ RSpec.describe Domain::Services::StatCountSorter do
       expect(result[0]).to eq ['page/4', 4]
       expect(result[1]).to eq ['page/2', 3]
       expect(result[2]).to eq ['page/3', 2]
-      expect(result[3..4]).to include(['page/1', 1], ['page/5', 1])
+      expect(result[3..4]).to include(['page/cool/2', 1], ['page/5', 1])
     end
 
     it 'returns orderes unique views' do
       result = subject.unique_views
       expect(result[0]).to eq ['page/2', 3]
       expect(result[1..2]).to include(['page/3', 2], ['page/4', 2])
-      expect(result[3..4]).to include(['page/1', 1], ['page/5', 1])
+      expect(result[3..4]).to include(['page/cool/2', 1], ['page/5', 1])
     end
   end
 end
