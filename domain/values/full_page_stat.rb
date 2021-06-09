@@ -2,7 +2,7 @@
 
 module Domain
   module Values
-    class PageStat
+    class FullPageStat
       attr_reader :path, :ips
 
       def initialize(path, ips)

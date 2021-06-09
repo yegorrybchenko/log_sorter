@@ -1,35 +1,22 @@
 # frozen_string_literal: true
 
-require 'domain/services/merge_page_stat'
-
 module Domain
   module Commands
     class AddPageStat
-      def initialize(stat, page_stat)
+      def initialize(stat, page_stat, strategy = Strategies::FullPageStat)
         @stat = stat
         @page_stat = page_stat
+        @strategy = strategy
       end
 
       def call
-        add_stat
+        strategy.call(stat, page_stat)
         stat
       end
 
       private
 
-      attr_reader :stat, :page_stat
-
-      def add_stat
-        path_stat = stat[page_stat.path]
-        return add_new(page_stat) unless path_stat
-
-        merged_page_stat = Services::MergePageStat.new(path_stat, page_stat).call
-        add_new(merged_page_stat)
-      end
-
-      def add_new(new_page_stat)
-        stat[new_page_stat.path] = new_page_stat
-      end
+      attr_reader :stat, :page_stat, :strategy
     end
   end
 end

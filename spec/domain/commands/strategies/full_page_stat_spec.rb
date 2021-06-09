@@ -2,6 +2,7 @@
 
 require 'spec_helper'
 require 'domain/commands/strategies/full_page_stat'
+require 'domain/values/full_page_stat'
 
 RSpec.describe Domain::Commands::Strategies::FullPageStat do
   subject { described_class.call(stat, page_stat) }
@@ -37,10 +38,10 @@ RSpec.describe Domain::Commands::Strategies::FullPageStat do
     context 'when pathes are the same' do
       context 'and ips are different' do
         let(:new_ip) { '22.47.41.35' }
-        let(:page_stat2) { build(:page_stat, ips: { new_ip => 1 }) }
+        let(:page_stat2) { Domain::Values::FullPageStat.new(page_stat.path, [new_ip]) }
 
         it 'adds ip to stat' do
-          expected_page_stat = Domain::Values::PageStat.new(page_stat2.path, page_stat.ips.keys.first + new_ip)
+          expected_page_stat = Domain::Values::FullPageStat.new(page_stat2.path, page_stat.ips.keys << new_ip)
           
           have_ips = subject[page_stat.path].ips
           expect(have_ips).to eq expected_page_stat.ips

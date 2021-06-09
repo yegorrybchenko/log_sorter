@@ -6,10 +6,9 @@ require 'domain/values/page_view'
 
 FactoryBot.define do
   factory :page_stat, class: Domain::Values::FullPageStat do
-    initialize_with { new(path, ips) }
+    initialize_with { new(path, ['21.34.53.12']) }
 
     path { 'page/cool/2' }
-    ips { { '21.34.53.12' => 1 } }
   end
 end
 
