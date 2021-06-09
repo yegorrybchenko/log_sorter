@@ -1,4 +1,7 @@
+![main workflow](https://github.com/yegorrybchenko/log_sorter/actions/workflows/main.yml/badge.svg)
+
 # Log sorter
+
 
 This script reads a file with logs following format:
 ```
