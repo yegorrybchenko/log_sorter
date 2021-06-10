@@ -7,14 +7,20 @@ This script reads a file with logs following format:
 ```bash
 /about 235.313.352.950
 /contact 200.017.277.774
-/about 836.973.694.403
+/about 136.973.694.403
+/about 136.973.694.403
 ```
 
-And prints how many unique views page have. Uniqueness is determined by unique ip.
+And prints how many total and unique views page have, sorted in desc ordering by count. Uniqueness is determined by unique ip.
 
 Example output:
 
 ```bash
+Most viewed pages:
+/about has 3 view(s)
+/contact has 1 view(s)
+
+Pages with most unique views:
 /about 2 unique view(s)
 /contact 1 unique view(s)
 ```
@@ -54,7 +60,7 @@ rspec
 
 ## Details
 
-A script reads file line by line and stores each path in hash where key is path and value is set of ips. When path already added we add ip to already existing set of ips of current path.
+A script reads file line by line and stores each path in hash where key is path and value is hash ip => count, where count is count of that ip for current page path. When path already added we add ip to already existing hash. When ip is already added we increments ip count.
 
 Then we sort each pair (key, value) by count of ips and print result.
 
