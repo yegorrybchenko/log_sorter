@@ -11,7 +11,7 @@ module Application
       class << self
         def call(file)
           stats = FileToStats.new(file).call
-          collected = Domain::Services::StatCollector.new(stats).call
+          collected = Domain::Services::StatCollector.new(stats.values).call
           sorted = Domain::Services::StatCountSorter.call(collected, desc: true)
           Application::Commands::PrintStats.call(sorted)
         end
