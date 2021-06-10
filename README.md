@@ -37,13 +37,13 @@ bundle
 ## Execution
 
 ```bash
-ruby bin/parser.rb PATH_TO_YOUR_FILE
+ruby bin/sorter.rb PATH_TO_YOUR_FILE
 ```
 
 ### Execute example
 
 ```bash
-ruby bin/parser.rb spec/files/webserver.log
+ruby bin/sorter.rb spec/files/webserver.log
 ```
 
 ## Tests
@@ -60,8 +60,7 @@ Then we sort each pair (key, value) by count of ips and print result.
 
 ## Improvements
 
-1. Add tests for bin/parser.rb
+1. Add tests for bin/sorter.rb
 2. Add validations for file (missing file, wrong file, etc.)
-3. Don't store ips in memory if not specified.
-4. Add `--help` parameter
-5. Process custom exstensions in the top of app. Create Parent custom exception and use existing.
+3. Add `--help` parameter
+4. Process custom exstensions in the top of app. Create Parent custom exception and use existing.
