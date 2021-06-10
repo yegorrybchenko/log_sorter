@@ -12,27 +12,8 @@ RSpec.describe Domain::Services::StatCountSorter do
     )
   end
 
-  context 'when direction is asc' do
-    subject { described_class.call(collected_stat) }
-
-    it 'returns ordered total views' do
-      result = subject.total_views
-      expect(result[0..1]).to include(['page/cool/2', 1], ['page/5', 1])
-      expect(result[2]).to eq ['page/3', 2]
-      expect(result[3]).to eq ['page/2', 3]
-      expect(result[4]).to eq ['page/4', 4]
-    end
-
-    it 'returns orderes unique views' do
-      result = subject.unique_views
-      expect(result[0..1]).to include(['page/cool/2', 1], ['page/5', 1])
-      expect(result[2..3]).to include(['page/3', 2], ['page/4', 2])
-      expect(result[4]).to eq ['page/2', 3]
-    end
-  end
-
   context 'when direction is desc' do
-    subject { described_class.call(collected_stat, desc: true) }
+    subject { described_class.call(collected_stat) }
 
     it 'returns ordered total views' do
       result = subject.total_views

@@ -15,7 +15,7 @@ module Application
 
       def call
         Services::PageViewFileReader.call(file) do |page_view|
-          page_stat = to_page_stat(page_view)
+          page_stat = Domain::Values::FullPageStat.new(page_view.path, [page_view.ip])
           Domain::Commands::AddPageStat.new(stat, page_stat).call
         end
 
@@ -25,10 +25,6 @@ module Application
       private
 
       attr_reader :file, :stat
-
-      def to_page_stat(page_view)
-        Domain::Values::FullPageStat.new(page_view.path, [page_view.ip])
-      end
     end
   end
 end

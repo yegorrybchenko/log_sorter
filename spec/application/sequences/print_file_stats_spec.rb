@@ -23,7 +23,7 @@ RSpec.describe Application::Sequences::PrintFileStats do
     allow(Domain::Services::StatCollector)
       .to receive_message_chain(:new, :call).with(stat_values).with(no_args).and_return(collected_stats)
     allow(Domain::Services::StatCountSorter)
-      .to receive(:call).with(collected_stats, desc: true).and_return(sorted_stats)
+      .to receive(:call).with(collected_stats).and_return(sorted_stats)
   end
 
   it 'returns sorted stats' do

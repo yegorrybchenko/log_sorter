@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'domain/values/collected_stat'
+require 'domain/services/full_page_stat_collector'
 
 module Domain
   module Services
@@ -13,8 +14,9 @@ module Domain
 
       def call
         stats.each do |full_page_stat|
-          total_views << [full_page_stat.path, total_page_views(full_page_stat.ips)]
-          unique_views << [full_page_stat.path, unique_page_views(full_page_stat.ips)]
+          collected = FullPageStatCollector.new(full_page_stat)
+          total_views << collected.total
+          unique_views << collected.unique
         end
 
         Values::CollectedStat.new(
@@ -26,14 +28,6 @@ module Domain
       private
 
       attr_reader :stats, :total_views, :unique_views
-
-      def total_page_views(page_ips)
-        page_ips.values.inject(:+)
-      end
-
-      def unique_page_views(page_ips)
-        page_ips.keys.size
-      end
     end
   end
 end

@@ -16,15 +16,18 @@ module Domain
             existing_page_stat = stat[page_stat.path]
             return add_new(stat, page_stat) unless existing_page_stat
 
-            page_stat.ips.each do |ip, count|
-              existing_page_stat.ips[ip] ||= 0
-              existing_page_stat.ips[ip] = existing_page_stat.ips[ip] + count
-            end
+            fill_exising(existing_page_stat.ips, page_stat)
           end
 
           def add_new(stat, page_stat)
             stat[page_stat.path] = page_stat
             stat
+          end
+
+          def fill_exising(existing_ips, page_stat)
+            page_stat.ips.each do |ip, count|
+              existing_ips[ip] = existing_ips[ip].to_i + count
+            end
           end
         end
       end

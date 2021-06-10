@@ -12,7 +12,7 @@ module Application
         def call(file, out)
           stats = FileToStats.new(file).call
           collected = Domain::Services::StatCollector.new(stats.values).call
-          sorted = Domain::Services::StatCountSorter.call(collected, desc: true)
+          sorted = Domain::Services::StatCountSorter.call(collected)
           Application::Commands::PrintStats.call(sorted, out)
         end
       end

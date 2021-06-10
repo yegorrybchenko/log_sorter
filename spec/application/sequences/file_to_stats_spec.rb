@@ -25,6 +25,8 @@ RSpec.describe Application::Sequences::FileToStats do
     page_stat1 = Domain::Values::FullPageStat.new('path', ['ip'])
     page_stat2 = Domain::Values::FullPageStat.new('path2', ['ip2'])
 
+    define_reader(page_view1, page_view2)
+
     expect(subject[page_stat1.path].path).to eq 'path'
     expect(subject[page_stat2.path].path).to eq 'path2'
     expect(subject[page_stat1.path].ips).to eq({ 'ip' => 1 })
@@ -35,11 +37,5 @@ RSpec.describe Application::Sequences::FileToStats do
     reader = Application::Services::PageViewFileReader
     allow(reader).to receive(:call).with(file).and_yield(first_yield).and_yield(second_yield)
     reader
-  end
-
-  def define_serializer(serializer_class, argument, return_value)
-    serializer = double
-    allow(serializer_class).to receive(:new).with(argument).and_return(serializer)
-    allow(serializer).to receive(:call).and_return(return_value)
   end
 end
