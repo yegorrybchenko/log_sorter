@@ -13,6 +13,7 @@ RSpec.describe Application::Sequences::PrintFileStats do
   let(:stat_values) { double }
   let(:collected_stats) { double }
   let(:sorted_stats) { double }
+  let(:print_out) { double }
 
   before(:each) do
     allow(stats).to receive(:values).and_return(stat_values)
@@ -23,8 +24,8 @@ RSpec.describe Application::Sequences::PrintFileStats do
   end
   
   it 'returns sorted stats' do
-    expect(Application::Commands::PrintStats).to receive(:call).with(sorted_stats)
+    expect(Application::Commands::PrintStats).to receive(:call).with(sorted_stats, print_out)
 
-    described_class.call(file)
+    described_class.call(file, print_out)
   end
 end

@@ -9,11 +9,11 @@ module Application
   module Sequences
     class PrintFileStats
       class << self
-        def call(file)
+        def call(file, out)
           stats = FileToStats.new(file).call
           collected = Domain::Services::StatCollector.new(stats.values).call
           sorted = Domain::Services::StatCountSorter.call(collected, desc: true)
-          Application::Commands::PrintStats.call(sorted)
+          Application::Commands::PrintStats.call(sorted, out)
         end
       end
     end
