@@ -14,7 +14,7 @@ RSpec.describe Application::Services::PageViewFileReader do
       let(:page_view) { Domain::Values::PageView.new('path', 123) }
 
       before(:each) do
-        %w(first second last).each { |l| stub_string_deserializer(l, page_view) }
+        %w[first second last].each { |l| stub_string_deserializer(l, page_view) }
       end
 
       it 'passes to block page view string' do

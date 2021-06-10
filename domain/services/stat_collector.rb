@@ -18,8 +18,8 @@ module Domain
         end
 
         Values::CollectedStat.new(
-          sort_count(total_views),
-          sort_count(unique_views)
+          total_views,
+          unique_views
         )
       end
 
@@ -33,12 +33,6 @@ module Domain
 
       def unique_page_views(page_ips)
         page_ips.keys.size
-      end
-
-      def sort_count(views)
-        views.sort do |first, second|
-          second.last <=> first.last
-        end
       end
     end
   end

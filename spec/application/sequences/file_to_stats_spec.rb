@@ -22,15 +22,8 @@ RSpec.describe Application::Sequences::FileToStats do
   end
 
   it 'returns formed stats' do
-    reader = define_reader(page_view1, page_view2)
-
     page_stat1 = Domain::Values::FullPageStat.new('path', ['ip'])
     page_stat2 = Domain::Values::FullPageStat.new('path2', ['ip2'])
-
-    expected = {
-      page_stat1.path => page_stat1,
-      page_stat2.path => page_stat2
-    }
 
     expect(subject[page_stat1.path].path).to eq 'path'
     expect(subject[page_stat2.path].path).to eq 'path2'

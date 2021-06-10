@@ -10,7 +10,7 @@ RSpec.describe Domain::Commands::Strategies::FullPageStat do
 
   context 'when stat is empty' do
     let(:stat) { {} }
-    
+
     it 'adds new page stat to stat' do
       expected = {
         page_stat.path => page_stat
@@ -30,7 +30,7 @@ RSpec.describe Domain::Commands::Strategies::FullPageStat do
         expected = {
           page_stat.path => page_stat
         }.merge(stat)
-        
+
         is_expected.to eq expected
       end
     end
@@ -42,7 +42,7 @@ RSpec.describe Domain::Commands::Strategies::FullPageStat do
 
         it 'adds ip to stat' do
           expected_page_stat = Domain::Values::FullPageStat.new(page_stat2.path, page_stat.ips.keys << new_ip)
-          
+
           have_ips = subject[page_stat.path].ips
           expect(have_ips).to eq expected_page_stat.ips
         end

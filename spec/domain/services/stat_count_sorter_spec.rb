@@ -5,11 +5,13 @@ require 'domain/services/stat_count_sorter'
 require 'domain/values/collected_stat'
 
 RSpec.describe Domain::Services::StatCountSorter do
-  let(:collected_stat) { Domain::Values::CollectedStat.new(
-    [['page/3', 2], ['page/4', 4], ['page/cool/2', 1], ['page/2', 3], ['page/5', 1]],
-    [['page/cool/2', 1], ['page/3', 2], ['page/4', 2], ['page/5', 1], ['page/2', 3]]
-  ) }
-  
+  let(:collected_stat) do
+    Domain::Values::CollectedStat.new(
+      [['page/3', 2], ['page/4', 4], ['page/cool/2', 1], ['page/2', 3], ['page/5', 1]],
+      [['page/cool/2', 1], ['page/3', 2], ['page/4', 2], ['page/5', 1], ['page/2', 3]]
+    )
+  end
+
   context 'when direction is asc' do
     subject { described_class.call(collected_stat) }
 
@@ -28,7 +30,7 @@ RSpec.describe Domain::Services::StatCountSorter do
       expect(result[4]).to eq ['page/2', 3]
     end
   end
-  
+
   context 'when direction is desc' do
     subject { described_class.call(collected_stat, desc: true) }
 
